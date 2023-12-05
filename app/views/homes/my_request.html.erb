@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @requests.present? %>
+    <% @requests.each do |request| %>
+      <tr>
+        <td><%= request.user.full_name %></td>
+        <td>
+          <%= link_to "Remove", add_friend_homes_path(receiver_id: request.id), class: "btn btn-danger" %>
+        </td>
+        <td>
+          <%= link_to "Accept", accepted_homes_path(id: request.id), class: "btn btn-success" %>
+        </td>
+      </tr>
+    <% end %>
+    <%else%>
+    <div style="color:green;border: solid;width:30%">
+    There is no request present
+    </div>
+    <%end%>
+  </tbody>
+</table>

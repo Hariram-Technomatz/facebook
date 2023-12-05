@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td>
+          <%= link_to "Add", add_friend_homes_path(receiver_id: user.id), class: "btn btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

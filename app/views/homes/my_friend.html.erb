@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td><%= friend.user.full_name %></td>
+        <td>
+          <%= link_to "Remove", remove_friend_homes_path(friend: friend), class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% @current_user_friends.each do |friend| %>
+      <tr>
+        <td><%= User.find_by_id(friend.receiver_id).full_name %></td>
+        <td>
+          <%= link_to "Remove", remove_friend_homes_path(friend: friend), class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

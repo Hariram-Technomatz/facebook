@@ -1,0 +1,10 @@
+<div>
+  <% @users.each do |user| %>
+    <% user.posts.order("RANDOM()").each do |post| %>
+      <div style="color:white; border:2px solid green; width: 20%; background-color:black">
+        <td><%= post.content %></td></br>
+        <center><td><%= image_tag(post.image, style: "height:150px; width:150px") %></td></center></br></br>
+      </div>
+      <% end %>
+  <% end %>
+</div>
