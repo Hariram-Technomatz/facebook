@@ -1,17 +1,28 @@
-<table>
+<!-- Add the modal markup -->
+<div class="modal fade" id="MyfriendListModal" tabindex="-1" role="dialog" aria-labelledby="MyfriendListModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="MyfriendListModal">Friend List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Action</th>
+      <th class="hidden">User</th>
+      <th class="hidden">Action</th>
     </tr>
   </thead>
   <tbody>
     <% if @requests.present? %>
     <% @requests.each do |request| %>
       <tr>
-        <td><%= request.user.full_name %></td>
+        <td style= "color: black"><%= request.user.full_name.titlecase %></td>
         <td>
-          <%= link_to "Remove", add_friend_homes_path(receiver_id: request.id), class: "btn btn-danger" %>
+          &nbsp&nbsp&nbsp&nbsp<%= link_to "Remove", add_friend_homes_path(receiver_id: request.id), class: "btn btn-danger" %>
         </td>
         <td>
           <%= link_to "Accept", accepted_homes_path(id: request.id), class: "btn btn-success" %>
@@ -25,3 +36,11 @@
     <%end%>
   </tbody>
 </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
