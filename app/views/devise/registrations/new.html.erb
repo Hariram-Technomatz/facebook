@@ -1,34 +1,52 @@
-<h2>Sign up</h2>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form | CodingLab</title>
+    <!-- Add your stylesheet link -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="title"><span>Login Form</span></div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-   <div class="field">
-    <%= f.label :full_name %><br />
-    <%= f.text_field :full_name, autofocus: true, autocomplete: "full-name" %>
-  </div>
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <%= f.text_field :full_name, placeholder: "Full Name", autofocus: true, autocomplete: "full-name" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <div class="row">
+            <i class="fas fa-envelope"></i>
+            <%= f.email_field :email, placeholder: "Email", autofocus: true, autocomplete: "email" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            <% if @minimum_password_length %>
+            <% end %>
+            <%= f.password_field :password, placeholder: "Password", autocomplete: "new-password" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            <%= f.password_field :password_confirmation, placeholder: "Confirm Password", autocomplete: "new-password" %>
+          </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+          <div class="row button">
+            <%= f.submit "Sign up" %>
+          </div>
+
+          <div class="signup-link">Already a member? <%= link_to "Login now", new_user_session_path %></div>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
 
 <%= render "devise/shared/links" %>

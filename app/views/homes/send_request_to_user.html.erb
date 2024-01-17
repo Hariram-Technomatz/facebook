@@ -1,16 +1,16 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Action</th>
+      <th class="hidden">User</th>
+      <th class="hidden">Action</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.full_name %></td>
+        <td style= "color:white"><%= user.full_name.titlecase %></td>
         <td>
-          <%= link_to "Add", add_friend_homes_path(receiver_id: user.id), class: "btn btn-primary" %>
+            &nbsp&nbsp<%= link_to "Add", add_friend_homes_path(receiver_id: user.id), class: "btn btn-primary" %>
         </td>
       </tr>
     <% end %>

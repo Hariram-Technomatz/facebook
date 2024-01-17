@@ -10,26 +10,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  </head>
+    <!-- Add these lines to include Bootstrap CSS and JavaScript -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <body>
-  <p class="notice"><%= notice %></p>
+  </head>
+  <% if user_signed_in? %>
+    <body style="background-image: url('/assets/download3.jpeg'); background-size: cover;">
+
+  <p class="notice", style="color:green"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <% if user_signed_in? %>
-  <%= link_to "Post", posts_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
+      <%= link_to "Post", posts_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
+      <%= link_to "Profile", profile_homes_path , class: "btn btn-primary", data: { target: "#friendListModal" , toggle: "modal"}  %>  &nbsp&nbsp&nbsp
+      <%= link_to "Send Request", send_request_to_user_homes_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
+      <%= link_to "My Request", my_request_homes_path , class: "btn btn-primary", data: { target: "#MyfriendListModal" , toggle: "modal"} %>  &nbsp&nbsp&nbsp
+      <%= link_to "My Friend", my_friend_homes_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
+      <%= link_to "New Post", new_post_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
+      <%= form_tag(destroy_user_session_path, method: :delete, class: "navbar-brand", style: "display: inline;") do %>
+        <%= button_tag "Logout", type: "submit", class: "btn btn-danger", data: { turbo_confirm: "Are you sure to logout?" } %>
+     <% end %>
+   <% end %>
 
-    <%= link_to "Profile", profile_homes_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
-    <%= link_to "Send Request", send_request_to_user_homes_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
-    <%= link_to "My Request", my_request_homes_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
-    <%= link_to "My Friend", my_friend_homes_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
-    <%= link_to "New Post", new_post_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
-    <%= link_to "Logout", destroy_user_session_path, data: {
-      turbo_method: :delete,
-      turbo_confirm: "Are you sure to logout?"
-    },class:"navbar-brand",style:"color:red" %> &nbsp&nbsp&nbsp
+ &nbsp&nbsp&nbsp
+    </br></br>
     <%else%>
-    <%= link_to "Sign up", new_user_registration_path ,class:"navbar-brand"  %>&nbsp&nbsp&nbsp
-    <%= link_to "Sign in",   new_user_session_path ,class:"navbar-brand"%><br />
+    <%#= link_to "Sign up", new_user_registration_path ,class:"navbar-brand"  %>&nbsp&nbsp&nbsp
+    <%#= link_to "Sign in",   new_user_session_path ,class:"navbar-brand"%><br />
     <%end%>
       <%= yield %>
   </body>
