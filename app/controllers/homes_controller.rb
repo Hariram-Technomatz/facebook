@@ -13,15 +13,22 @@ class HomesController < ApplicationController
 
   def add_friend
     friend = Friend.create(sender_id: current_user.id, receiver_id: params[:receiver_id], status: 0)
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: "Request sent" }
+    redirect_to send_request_to_user_homes_path(add_button_state: 'sent', user_id: params[:receiver_id])
+  end
+
+  def cancel_friend_request
+    friend = Friend.find_by(sender_id: current_user.id, receiver_id: params[:receiver_id], status: 'pending')
+    if friend&.destroy
+      redirect_back fallback_location: root_path, notice: "Friend request cancelled", cancelled_request: true
+    else
+      redirect_back fallback_location: root_path, alert: "Friend request not found"
     end
   end
 
   def remove_friend
-    friend = Friend.find(params[:friend]).update(status: 2) if params[:friend]
+    friend = Friend.find(params[:friend_id]).update(status: 2) if params[:friend_id]
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Remove successfull" }
+      format.html { redirect_to my_request_homes_path, notice: "Remove successfull" }
     end
   end
 

@@ -23,10 +23,10 @@
   <p class="notice", style="color:green"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <% if user_signed_in? %>
-      <%= link_to "Post", posts_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
-      <%= link_to "Profile", profile_homes_path , class: "btn btn-primary", data: { target: "#friendListModal" , toggle: "modal"}  %>  &nbsp&nbsp&nbsp
+      <%= link_to "Post", posts_path , class:"navbar-brand" %>  &nbsp&nbsp&nbsp
+      <%= link_to "Profile", profile_homes_path , class:"navbar-brand" %>  &nbsp&nbsp&nbsp
       <%= link_to "Send Request", send_request_to_user_homes_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
-      <%= link_to "My Request", my_request_homes_path , class: "btn btn-primary", data: { target: "#MyfriendListModal" , toggle: "modal"} %>  &nbsp&nbsp&nbsp
+      <%= link_to "My Request", my_request_homes_path , class:"navbar-brand" %>  &nbsp&nbsp&nbsp
       <%= link_to "My Friend", my_friend_homes_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
       <%= link_to "New Post", new_post_path ,class:"navbar-brand"  %>  &nbsp&nbsp&nbsp
       <%= form_tag(destroy_user_session_path, method: :delete, class: "navbar-brand", style: "display: inline;") do %>

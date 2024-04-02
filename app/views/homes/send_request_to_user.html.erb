@@ -8,9 +8,10 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td style= "color:white"><%= user.full_name.titlecase %></td>
+        <td style="color:white"><%= user.full_name.titlecase %></td>
         <td>
-            &nbsp&nbsp<%= link_to "Add", add_friend_homes_path(receiver_id: user.id), class: "btn btn-primary" %>
+          <% button_text, button_path = button_text_and_path_for_user(user) %>
+          &nbsp&nbsp<%= link_to button_text, button_path, method: :post, class: "btn btn-primary add-btn" %>
         </td>
       </tr>
     <% end %>

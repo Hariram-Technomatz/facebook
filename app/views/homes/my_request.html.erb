@@ -1,15 +1,5 @@
-<!-- Add the modal markup -->
-<div class="modal fade" id="MyfriendListModal" tabindex="-1" role="dialog" aria-labelledby="MyfriendListModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="MyfriendListModal">Friend List</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <table>
+<!-- Removed the modal markup -->
+<table>
   <thead>
     <tr>
       <th class="hidden">User</th>
@@ -18,29 +8,25 @@
   </thead>
   <tbody>
     <% if @requests.present? %>
-    <% @requests.each do |request| %>
+      <% @requests.each do |request| %>
+        <tr>
+          <td style="color: white"><%= request.user.full_name.titlecase %></td>
+          <td>
+            &nbsp&nbsp&nbsp&nbsp<%= link_to "Remove", remove_friend_homes_path(friend_id: request.id), class: "btn btn-danger" %>
+          </td>
+          <td>
+            <%= link_to "Accept", accepted_homes_path(id: request.id), class: "btn btn-success" %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
       <tr>
-        <td style= "color: black"><%= request.user.full_name.titlecase %></td>
-        <td>
-          &nbsp&nbsp&nbsp&nbsp<%= link_to "Remove", add_friend_homes_path(receiver_id: request.id), class: "btn btn-danger" %>
-        </td>
-        <td>
-          <%= link_to "Accept", accepted_homes_path(id: request.id), class: "btn btn-success" %>
+        <td colspan="3">
+          <div style="color:green;border: solid;width:30%">
+            There is no request present
+          </div>
         </td>
       </tr>
     <% end %>
-    <%else%>
-    <div style="color:green;border: solid;width:30%">
-    There is no request present
-    </div>
-    <%end%>
   </tbody>
 </table>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
