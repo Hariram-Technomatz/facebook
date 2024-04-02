@@ -19,9 +19,11 @@ class HomesController < ApplicationController
   def cancel_friend_request
     friend = Friend.find_by(sender_id: current_user.id, receiver_id: params[:receiver_id], status: 'pending')
     if friend&.destroy
-      redirect_back fallback_location: root_path, notice: "Friend request cancelled", cancelled_request: true
+      respond_to do |format|
+        format.html { redirect_to send_request_to_user_homes_path, notice: "Friend request cancelled" }
+      end
     else
-      redirect_back fallback_location: root_path, alert: "Friend request not found"
+      redirect_back fallback_location: send_request_to_user_homes_path, alert: "Friend request not found"
     end
   end
 
